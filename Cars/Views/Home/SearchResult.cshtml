@@ -1,0 +1,18 @@
+@using CarDealership.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Car Dealership</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'> 
+  </head>
+  <body>
+    <div class="jumbotron">
+        <h1 class="text-primary">Car Dealership</h1>
+    </div>
+    <div id="results">
+       @Html.Raw(Dealership.PrintCarListtoRows(Model));
+
+    </div>
+
+    </body>
+    </html>
