@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CarDealership.Models 
 {
@@ -67,6 +68,58 @@ public class Dealership
             return AllCars;
         }
     }
+    public static List<Car> SearchbyMaxPrice(List<Car> cars,int maxPrice)
+    {
+        List<Car> underMaxPrice = new List<Car>();
+        foreach(Car c in cars)
+        {
+            if(c.Price <= maxPrice)
+            {
+                underMaxPrice.Add(c);
+            }
+        }
+        return underMaxPrice;
+    }
+    public static List<Car> SearchbyYear(List<Car> cars,int maxYear)
+    {
+        List<Car> underMaxYear = new List<Car>();
+        foreach(Car c in cars)
+        {
+            if(c.Year <= maxYear)
+            {
+                underMaxYear.Add(c);
+            }
+        }
+        return underMaxYear;
+    }
+
+    public List<Car> Search(string type, string price, string year)
+    {
+        List<Car> outputList = SearchbyType(type);
+        int priceInt,yearInt;
+        bool successPrice = Int32.TryParse(price, out priceInt);
+        bool successYear = Int32.TryParse(year, out yearInt);
+        if(successPrice && successYear)
+        {
+            outputList = SearchbyMaxPrice(outputList, priceInt);
+            if(outputList.Any())
+            {
+                outputList = SearchbyYear(outputList, yearInt);
+            }
+        }
+        else if (successPrice)
+        {
+            outputList = SearchbyMaxPrice(outputList, priceInt);
+        }
+        else if (successYear)
+        {
+            outputList = SearchbyYear(outputList, yearInt);
+        }
+        return outputList;
+    }
+
+
+    
 
     public static List<string> ListofCarObjstoHTML(List<Car> cars)
     {
@@ -80,35 +133,43 @@ public class Dealership
 
     public static string PrintCarListtoRows(List<Car> cars)
     {
-        List<string> carsHTML = ListofCarObjstoHTML(cars);
-        double num = carsHTML.Count/3.0;
-        double numberRows = Math.Ceiling(num);
-        int totalDivs = (int)numberRows *3;
-        string output = "";
-        for(int i=0;i<totalDivs;i++)
+        if(cars.Any())
         {
-            if(i<carsHTML.Count)
+            List<string> carsHTML = ListofCarObjstoHTML(cars);
+            double num = carsHTML.Count/3.0;
+            double numberRows = Math.Ceiling(num);
+            int totalDivs = (int)numberRows *3;
+            string output = "";
+            for(int i=0;i<totalDivs;i++)
             {
-                if(i==0)
+                if(i<carsHTML.Count)
                 {
-                    output+="<div class=row>"+carsHTML[i];
-                }
-                else if (i%3 ==0)
-                {
-                    output+="</div><div class=row>"+carsHTML[i];
+                    if(i==0)
+                    {
+                        output+="<div class=row>"+carsHTML[i];
+                    }
+                    else if (i%3 ==0)
+                    {
+                        output+="</div><div class=row>"+carsHTML[i];
+                    }
+                    else
+                    {
+                        output += carsHTML[i];
+                    }
                 }
                 else
                 {
-                    output += carsHTML[i];
+                    output+="<div class=col-lg-4></div>";
                 }
             }
-            else
-            {
-                output+="<div class=col-lg-4></div>";
-            }
+            output += "</div>";
+            return output;
         }
-        output += "</div>";
-        return output;
+        else
+        {
+            return "<p>No Results were found matching your criteria. Please try again.</p><a href='/'><button type=button>New Search</button></a>";
+        }
+        
     }
 }
 
@@ -134,9 +195,11 @@ public class Car
 
     public string PrintCar()
     {
-        string output = "<div class=col-lg-4><img src="+Picture+" alt='car'><h2>"+Make+" " + Model+" " + Year+"</h2><h3>"+Mileage+" miles</h3><h3>$"+Price+"</h3></div>" ;
+        string output = "<div class=col-lg-4><img src="+Picture+" alt='car'><h2>"+Make+" " + Model+" " + Year+"</h2><h3>"+Mileage+" miles</h3><h3>$"+Price+"</h3></div>";
         return output;
     }
+
+
 }
 
 public class SUV:Car
@@ -171,7 +234,6 @@ public class Sedan:Car
     }
  
 }
-
 public class Van:Car
 {
     public Van(string make, string model, int price, int mileage, int year,
@@ -182,4 +244,5 @@ public class Van:Car
     }
  
 }
+
 }

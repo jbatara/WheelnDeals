@@ -14,7 +14,7 @@ namespace CarDealership.Controllers
     }
 
     [Route("/results")]
-    public ActionResult SearchResult(string type)
+    public ActionResult SearchResult(string type, string price, string year)
     {
         Dealership d = new Dealership();
         Car car1 = new Car("Saab","9-3 Convertible",12000,50000,2011,"https://parkers-images.bauersecure.com/pagefiles/202328/cut-out/600x400/saab_93_conv03.jpg");
@@ -39,7 +39,7 @@ namespace CarDealership.Controllers
         d.AddCar(truck2);
         Van van1 = new Van("Mercedes","12 Passenger Van",50000,70000,2015,"https://www.mercedes-benz-vans.ca/images/vehicles/sprinter/passenger-van-nav.png");
         d.AddCar(van1);
-        List<Car> searchList = d.SearchbyType(type);
+        List<Car> searchList = d.Search(type,price,year);
 
         return View(searchList);  
     }

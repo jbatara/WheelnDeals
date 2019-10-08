@@ -3,6 +3,7 @@
   <head>
     <title>Car Dealership</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'> 
+    <link rel="stylesheet" type="text/css" runat="server" media="screen" href="~/css/Stylesheet.css" />
     
   </head>
   <body>
@@ -12,7 +13,8 @@
      
     <form action="/results" method="post" class="form-group">
         <label for="carType">Car Type</label>
-        <select>
+        <select name="type">
+          <option name="type" value="any">Any Type</option>
           <option name="type" value="sedan">Sedan</option>
           <option name="type" value="suv">SUV</option>
           <option name="type" value="truck">Truck</option>
@@ -20,10 +22,10 @@
         </select>
         <br>
         <label for="carPrice">Maximum car price</label>
-        <input id="carPrice" name="carPrice" type="text" class="form-control">
+        <input id="carPrice" name="price" type="number" class="form-control">
         <br>
-        <label for="year">Year</label>
-        <input id="year" name="year" type="text" class="form-control">
+        <label for="year">Max Year</label>
+        <input id="year" name="year" type="number" class="form-control">
         <br>
         <button type="submit">Search</button>
     </form>
