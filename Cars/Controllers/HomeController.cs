@@ -17,7 +17,7 @@ namespace CarDealership.Controllers
     public ActionResult SearchResult(string type, string price, string year)
     {
         Dealership d = new Dealership();
-        Car car1 = new Car("Saab","9-3 Convertible",12000,50000,2011,"https://parkers-images.bauersecure.com/pagefiles/202328/cut-out/600x400/saab_93_conv03.jpg");
+        Sedan car1 = new Sedan("Saab","9-3 Convertible",12000,50000,2011,"https://parkers-images.bauersecure.com/pagefiles/202328/cut-out/600x400/saab_93_conv03.jpg");
         d.AddCar(car1);
         SUV suv1 = new SUV("Honda","CRV",3000,120000,2008,"https://cdn.jdpower.com/Models/400x200/2008-Honda-CR-V.jpg");
         d.AddCar(suv1);

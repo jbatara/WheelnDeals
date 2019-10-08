@@ -173,7 +173,7 @@ public class Dealership
     }
 }
 
-public class Car
+abstract public class Car
 {
     public string Make {get;set;}
     public string Model {get;set;}
@@ -198,8 +198,6 @@ public class Car
         string output = "<div class=col-lg-4><img src="+Picture+" alt='car'><h2>"+Make+" " + Model+" " + Year+"</h2><h3>"+Mileage+" miles</h3><h3>$"+Price+"</h3></div>";
         return output;
     }
-
-
 }
 
 public class SUV:Car
