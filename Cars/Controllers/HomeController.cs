@@ -31,16 +31,16 @@ namespace CarDealership.Controllers
         d.AddCar(sedan2);
         Sedan sedan3 = new Sedan("Saturn","L Series",5000,16000,2002,"https://upload.wikimedia.org/wikipedia/commons/c/c9/00-02_Saturn_L-Series_sedan.jpg");
         d.AddCar(sedan3);
-        Sedan sedan4 = new Sedan("Volkswagon","Golf",1000000000,49000,2014,"https://upload.wikimedia.org/wikipedia/commons/c/c9/00-02_Saturn_L-Series_sedan.jpg");
+        Sedan sedan4 = new Sedan("Volkswagon","Golf",1000000000,49000,2014,"https://cimg1.ibsrv.net/ibimg/hgm/1600x900-1/100/403/2014-volkswagen-gti-concept_100403401.jpg");
         d.AddCar(sedan4);
         Truck truck1 = new Truck("Toyota","Tacoma",11380,260000,2003,"https://cdn.bringatrailer.com/wp-content/uploads/2018/03/152124801198764da20180316_122214-940x705.jpg");
         d.AddCar(truck1);
-        Truck truck2 = new Truck("Chevy","S10",4812,350000,1992,"https://en.wikipedia.org/wiki/Chevrolet_S-10#/media/File:1992_Chevrolet_S-10_Tahoe.jpg");
+        Truck truck2 = new Truck("Chevy","S10",4812,350000,1992,"https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/1992_Chevrolet_S-10_Tahoe.jpg/280px-1992_Chevrolet_S-10_Tahoe.jpg");
         d.AddCar(truck2);
         Van van1 = new Van("Mercedes","12 Passenger Van",50000,70000,2015,"https://www.mercedes-benz-vans.ca/images/vehicles/sprinter/passenger-van-nav.png");
         d.AddCar(van1);
         List<Car> searchList = d.SearchbyType(type);
-        
+
         return View(searchList);  
     }
   }
